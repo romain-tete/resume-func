@@ -34,5 +34,5 @@
       "partitionKey": "pk"
     }
   ],
-  "scriptFile": "../dist/SaveExperience/index.js"
+  "scriptFile": "../dist/FnExperiencesSave/index.js"
 }

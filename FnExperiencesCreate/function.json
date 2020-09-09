@@ -5,7 +5,7 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "methods": ["get"],
+      "methods": ["post"],
       "route": "experiences"
     },
     {
@@ -15,13 +15,14 @@
     },
     {
       "type": "CosmosDB",
-      "direction": "in",
-      "name": "experiences",
+      "direction": "out",
+      "name": "newExperienceBinding",
       "databaseName": "resume",
       "collectionName": "experiences",
+      "createIfNotExists": "true",
       "connectionStringSetting": "CosmosDBConnection",
-      "partitionKey": "test"
+      "partitionKey": "/pk"
     }
   ],
-  "scriptFile": "../dist/ListExperiences/index.js"
+  "scriptFile": "../dist/FnExperiencesCreate/index.js"
 }
