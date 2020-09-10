@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Experience",
+  "definitions": {
+    "Context": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "ownerId": {
+          "type": "string"
+        },
+        "contextId": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["Context"]
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "label"],
+      "additionalProperties": false
+    },
+    "Role": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "ownerId": {
+          "type": "string"
+        },
+        "contextId": {
+          "type": "string"
+        },
+        "roleId": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["Role"]
+        },
+        "partitionKey": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "contextId", "label", "start", "end"],
+      "additionalProperties": false
+    },
+    "Impact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "ownerId": {
+          "type": "string"
+        },
+        "contextId": {
+          "type": "string"
+        },
+        "roleId": {
+          "type": "string"
+        },
+        "impactId": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["Impact"]
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "contextId", "roleId", "description"],
+      "additionalProperties": false
+    }
+  }
+}
