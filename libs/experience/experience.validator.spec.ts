@@ -1,4 +1,3 @@
-import { expect } from "chai";
-import { validator } from "./experience.validator";
+import { expect } from 'chai';
 
-describe("Experience validator", () => {});
+describe('Experience validator', () => {});
