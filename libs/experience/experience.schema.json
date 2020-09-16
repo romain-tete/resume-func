@@ -87,11 +87,11 @@
           "type": "string",
           "enum": ["Impact"]
         },
-        "description": {
+        "label": {
           "type": "string"
         }
       },
-      "required": ["id", "contextId", "roleId", "description"],
+      "required": ["id", "contextId", "roleId", "label"],
       "additionalProperties": false
     }
   }

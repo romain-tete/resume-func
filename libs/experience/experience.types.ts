@@ -2,7 +2,7 @@ export interface Impact {
   id: string;
   contextId: string;
   roleId: string;
-  description: string;
+  label: string;
   ownerId?: string;
   impactId?: string;
   kind?: 'Impact';
