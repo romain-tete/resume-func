@@ -1,6 +1,6 @@
 import { SqlQuerySpec } from '@azure/cosmos';
 import { AzureFunction, Context, HttpRequest } from '@azure/functions';
-import { Context as ExperienceContext, runQuery } from '../libs/experience';
+import { Context as ExperienceContext, runQuery } from '../libs/resume';
 import { readAuthenticatedUserId } from './../libs/authentication';
 import { setErrorResponse } from '../libs/exceptions';
 

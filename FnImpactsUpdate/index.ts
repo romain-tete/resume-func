@@ -1,5 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from '@azure/functions';
-import { readAndValidate, Impact, readOne, updateOne } from '../libs/experience';
+import { readAndValidate, Impact, readOne, updateOne } from '../libs/resume';
 import { throwIfNotAuthenticatedUser } from '../libs/authentication';
 import { setErrorResponse } from '../libs/exceptions';
 

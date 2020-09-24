@@ -1,7 +1,7 @@
 import { AzureFunction, Context, HttpRequest } from '@azure/functions';
 import { throwIfNotAuthenticatedUser } from '../libs/authentication';
 import { setErrorResponse } from '../libs/exceptions';
-import { Impact, readOne, deleteOne } from '../libs/experience';
+import { Impact, readOne, deleteOne } from '../libs/resume';
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   try {

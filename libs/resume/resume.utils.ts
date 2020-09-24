@@ -1,9 +1,9 @@
 import { Context as FunctionContext } from '@azure/functions';
 import { HttpRequest } from '@azure/functions';
 import { Validator, ValidationError } from 'jsonschema';
-import { Context, Role, Impact } from './experience.types';
+import { Context, Role, Impact } from './resume.types';
 import { readAuthenticatedUserId } from '../authentication';
-import * as experienceSchema from './experience.schema.json';
+import * as experienceSchema from './resume.schema.json';
 import { BadRequestException } from '../exceptions';
 
 type ExperienceDomainObjects = Context | Role | Impact;

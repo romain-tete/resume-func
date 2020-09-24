@@ -1,7 +1,7 @@
 import { NotFoundException, ForbiddenException, setErrorResponse } from './../libs/exceptions';
 import { readAuthenticatedUserId } from './../libs/authentication';
 import { AzureFunction, Context, HttpRequest } from '@azure/functions';
-import { Impact, readOne, deleteOne } from '../libs/experience';
+import { Impact, readOne, deleteOne } from '../libs/resume';
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   try {

@@ -26,3 +26,18 @@ export interface Context {
   contextId?: string;
   kind?: 'Context';
 }
+
+export interface Contact {
+  id: string;
+  ownerId: string;
+  kind: 'Contact';
+  contactName: string;
+  fullname: string;
+  zipcode: number;
+  address: string;
+  address2: string;
+  city: string;
+  email: string;
+  phoneNumber: string;
+  pictureUrl: string;
+}

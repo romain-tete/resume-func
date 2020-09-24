@@ -2,7 +2,7 @@ import { SqlQuerySpec } from '@azure/cosmos';
 import { AzureFunction, Context, HttpRequest } from '@azure/functions';
 import { readAuthenticatedUserId } from './../libs/authentication';
 import { setErrorResponse } from '../libs/exceptions';
-import { Role, runQuery } from '../libs/experience';
+import { Role, runQuery } from '../libs/resume';
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   try {

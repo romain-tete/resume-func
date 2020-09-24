@@ -16,7 +16,7 @@ function createOrReuseClient(): CosmosClient {
   return client;
 }
 
-function getContainer(databaseName: string, containerName: string): Container {
+export function getContainer(databaseName: string, containerName: string): Container {
   const client = createOrReuseClient();
   const database = client.database(databaseName);
   const container = database.container(containerName);

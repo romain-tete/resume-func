@@ -1,5 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from '@azure/functions';
-import { readAndValidate, insertOne } from '../libs/experience';
+import { readAndValidate, insertOne } from '../libs/resume';
 import { setErrorResponse } from '../libs/exceptions';
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
