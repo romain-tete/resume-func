@@ -7,7 +7,7 @@ interface Partitioned {
 
 let client: CosmosClient = null;
 
-export function createOrReuseClient(): CosmosClient {
+function createOrReuseClient(): CosmosClient {
   if (!client) {
     const connection = process.env.CosmosDBConnection;
     client = new CosmosClient(connection);
@@ -16,7 +16,7 @@ export function createOrReuseClient(): CosmosClient {
   return client;
 }
 
-export function getContainer(databaseName: string, containerName: string): Container {
+function getContainer(databaseName: string, containerName: string): Container {
   const client = createOrReuseClient();
   const database = client.database(databaseName);
   const container = database.container(containerName);
@@ -24,7 +24,7 @@ export function getContainer(databaseName: string, containerName: string): Conta
   return container;
 }
 
-export function sanitizeCosmosItem(item: any): any {
+function sanitizeCosmosItem(item: any): any {
   const sanitized = {};
   for (let key in item) {
     if (!key.startsWith('_') && key !== 'pk') {
@@ -35,12 +35,7 @@ export function sanitizeCosmosItem(item: any): any {
   return sanitized;
 }
 
-export async function runOneInsert<T = any>(
-  payload: T & Partitioned,
-  databaseName,
-  containerName: string,
-  sanitizeOutput = true
-): Promise<T> {
+export async function insertOne<T = any>(payload: T & Partitioned, databaseName, containerName: string, sanitizeOutput = true): Promise<T> {
   const container = getContainer(databaseName, containerName);
   return container.items
     .create({ ...payload, pk: DEFAULT_PARTITION })
@@ -48,7 +43,7 @@ export async function runOneInsert<T = any>(
     .then((r) => (sanitizeOutput ? sanitizeCosmosItem(r) : r));
 }
 
-export async function runOneRead<T = any>(id: string, databaseName: string, containerName: string, sanitizeOutput = true): Promise<T> {
+export async function readOne<T = any>(id: string, databaseName: string, containerName: string, sanitizeOutput = true): Promise<T> {
   const container = getContainer(databaseName, containerName);
   return container
     .item(id, DEFAULT_PARTITION)
@@ -57,7 +52,7 @@ export async function runOneRead<T = any>(id: string, databaseName: string, cont
     .then((r) => (sanitizeOutput ? sanitizeCosmosItem(r) : r));
 }
 
-export async function runOneUpdate<T = any>(
+export async function updateOne<T = any>(
   id: string,
   payload: T & Partitioned,
   databaseName: string,
@@ -74,7 +69,7 @@ export async function runOneUpdate<T = any>(
     .then((r) => (sanitizeOutput ? sanitizeCosmosItem(r) : r));
 }
 
-export async function runOneDelete<T = any>(id: string, databaseName: string, containerName: string): Promise<OperationResponse> {
+export async function deleteOne<T = any>(id: string, databaseName: string, containerName: string): Promise<OperationResponse> {
   const container = getContainer(databaseName, containerName);
   return container.item(id, DEFAULT_PARTITION).delete();
 }
@@ -92,7 +87,7 @@ export async function runQuery<T = any>(
     .then((response: FeedResponse<T>) => response.resources.map((r) => (sanitizeOutput ? sanitizeCosmosItem(r) : r)));
 }
 
-export async function runDeleteByQuery(
+export async function deleteFromQuery(
   query: string | SqlQuerySpec,
   databaseName: string,
   containerName: string
