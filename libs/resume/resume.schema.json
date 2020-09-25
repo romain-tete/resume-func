@@ -20,6 +20,12 @@
         },
         "label": {
           "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
         }
       },
       "required": ["id", "label"],
@@ -51,7 +57,7 @@
           "type": "string"
         },
         "description": {
-          "type": "string"
+          "type": ["string", "null"]
         },
         "start": {
           "type": "string",
