@@ -23,14 +23,14 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   }
 
   try {
-    if (validateContact(contact)) {
+    if (validateContact(contact, context)) {
       const existing = await readContact(ownerId);
 
       let body: Contact;
       if (existing === null) {
         body = await insertContact({ ...contact, ...staticFields });
       } else {
-        const merged: Contact = { ...existing, ...contact, ...staticFields };
+        const merged: Contact = { ...contact, ...staticFields };
         body = await updateContact(merged.id, merged);
       }
 
@@ -46,11 +46,16 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   }
 };
 
-function validateContact(contact: any): contact is Contact {
+function validateContact(contact: any, context: Context): contact is Contact {
   const contactSchema = resumeSchema.definitions.Contact;
   const validationResult = validate(contact, contactSchema);
 
-  return validationResult.errors.length === 0;
+  if (validationResult.errors.length > 0) {
+    context.log.error(validationResult.errors);
+    return false;
+  } else {
+    return true;
+  }
 }
 
 export default httpTrigger;

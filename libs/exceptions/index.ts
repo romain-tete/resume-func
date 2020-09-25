@@ -40,7 +40,6 @@ export function setErrorResponse(context: Context, error: any) {
       message: error.message,
     };
   } else {
-    context.log(error);
     context.bindings.res = {
       status: error.status || 500,
       body: 'Something went wrong.',
