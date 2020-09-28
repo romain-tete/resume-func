@@ -18,7 +18,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   };
 
   if (contactName !== 'default') {
-    context.log.error('Only contacts with contactName = default are supported for now');
+    context.log.error(`Only contacts with contactName = 'default' are supported for now`);
     throw new BadRequestException();
   }
 

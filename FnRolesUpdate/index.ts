@@ -6,7 +6,6 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   try {
     const payload = readAndValidate(req, 'Role', context);
     const oldItem = await readOne<Role>(req.params.id);
-    context.log(req.params.id, oldItem);
     if (!oldItem) {
       throw new NotFoundException();
     }

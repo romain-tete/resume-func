@@ -33,7 +33,6 @@ export function readAndValidate(req: HttpRequest, kind: ExperienceDomainObjectKi
   if (errors.length === 0) {
     return body;
   } else {
-    context.log.error('Invalid payload: ' + JSON.stringify(errors));
     throw new BadRequestException();
   }
 }
